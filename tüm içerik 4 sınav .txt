@@ -1,0 +1,196 @@
+Harika bir hazırlık planı kral! Yıllık plana göre 12. Sınıf Oyun Programlama dersi için her sınav dönemine özel konu özetleri ve soru-cevap anahtarlarını aşağıda bulabilirsin. Ayrıca dersin tamamını kapsayan kapsamlı bir çalışma setini (flash kartlar ve quiz) senin için hazırladım.
+
+### **1. DÖNEM 1. SINAV HAZIRLIK NOTLARI**
+**Konu Özeti:**
+*   **Kurulum ve Arayüz:** Oyun motoru (Unity vb.) ve kod editörü (VS Code) kurulumu yapılır; proje oluşturulurken 2D veya 3D şablon seçilir.
+*   **Nesneler ve Fizik:** Sahneye 2D/3D objeler eklenir; fiziksel etkileşim için nesnelere **Rigidbody** bileşeni, çarpışma sınırları için ise **Collider** eklenmelidir.
+*   **Kod Temelleri:** C# dilinde `Start()` metodu oyun başladığında bir kez, `Update()` metodu ise her karede (frame) çalışır. Karar yapıları (`if-else`) ve döngüler (`for`, `while`) etkileşim için temeldir.
+
+**10 Soru ve Cevap:**
+1.  **Soru:** Nesnelerin yerçekimi gibi fiziksel kurallara uymasını sağlayan bileşen nedir? **Cevap:** Rigidbody.
+2.  **Soru:** Çarpışma alanlarını belirleyen bileşen hangisidir? **Cevap:** Collider.
+3.  **Soru:** `Update()` metodunun görevi nedir? **Cevap:** Her karede (frame) kodları tekrar çalıştırmak.
+4.  **Soru:** Bir değişkeni Unity editörü içinden görünür kılmak için hangi komut kullanılır? **Cevap:** `[SerializeField]`.
+5.  **Soru:** `int sayi = Random.Range(0, 10);` kodu ne üretir? **Cevap:** 0 ile 9 arasında rastgele bir tamsayı.
+6.  **Soru:** Nesneleri kod ile sahneden silmek için hangi metot kullanılır? **Cevap:** `Destroy()`.
+7.  **Soru:** `for` döngüsünün temel amacı nedir? **Cevap:** Belirli bir işlemi istenilen sayıda tekrarlamak.
+8.  **Soru:** Projeye dışarıdan model veya ses eklemek için hangi klasör kullanılır? **Cevap:** Assets.
+9.  **Soru:** İki nesne çarpıştığında çalışan metot nedir? **Cevap:** `OnCollisionEnter`.
+10. **Soru:** Bir nesnenin koordinat bilgilerini tutan bileşen hangisidir? **Cevap:** Transform.
+
+---
+
+### **1. DÖNEM 2. SINAV HAZIRLIK NOTLARI**
+**Konu Özeti:**
+*   **Kullanıcı Arayüzü (UI):** Oyuncu puanı, süre yazıları ve butonlar için **Canvas** yapısı kullanılır.
+*   **Görsel Düzenleme:** 2D oyunlarda resimler **Sprite** olarak adlandırılır; zemin tasarımları için **Tilemap** kullanılır.
+*   **Materyal ve Işık:** Nesnelerin rengini ve dokusunu (texture) materyaller belirler. Sahne aydınlatması için Directional Light (Güneş benzeri) veya Point Light kullanılır.
+
+**10 Soru ve Cevap:**
+1.  **Soru:** UI nesnelerinin (buton, yazı vb.) üzerinde durduğu temel yapı nedir? **Cevap:** Canvas.
+2.  **Soru:** 2D görsellere oyun motorunda ne ad verilir? **Cevap:** Sprite.
+3.  **Soru:** Bir nesnenin yüzey görünümünü ve dokusunu belirleyen yapı nedir? **Cevap:** Materyal.
+4.  **Soru:** Tüm sahneyi eşit şekilde aydınlatan ışık türü hangisidir? **Cevap:** Directional Light.
+5.  **Soru:** `Tilemap` ne işe yarar? **Cevap:** Kare tabanlı (grid) zemin ve harita tasarımı yapmaya yarar.
+6.  **Soru:** Kullanıcıdan metin girişi almak için hangi UI nesnesi kullanılır? **Cevap:** Input Field.
+7.  **Soru:** Oyundaki kameraların temel görevi nedir? **Cevap:** Sahneyi oyuncunun göreceği şekilde görüntülemek.
+8.  **Soru:** JSON formatı oyunlarda genellikle ne için kullanılır? **Cevap:** Veri saklama ve soru listesi gibi bilgileri okuma.
+9.  **Soru:** Butonlara tıklayınca işlem yapması için hangi bileşen eklenir? **Cevap:** OnClick() olayı.
+10. **Soru:** Bir nesnenin saydamlığını materyal üzerinden nasıl ayarlarsınız? **Cevap:** Rendering Mode'u "Transparent" yaparak.
+
+---
+
+### **2. DÖNEM 1. SINAV HAZIRLIK NOTLARI**
+**Konu Özeti:**
+*   **Animasyon:** Karakter hareketleri için **Animator Controller** ve **Animation** pencereleri kullanılır. Durumlar arası geçişler (Idle -> Run) parametrelerle kontrol edilir.
+*   **Efektler:** Patlama, ateş veya toz gibi efektler için **Particle System** kullanılır.
+*   **Çevre Tasarımı:** Terrain (arazi) aracıyla dağlar, yollar ve ağaçlar oluşturulur.
+
+**10 Soru ve Cevap:**
+1.  **Soru:** Animasyonlar arasındaki geçişleri yöneten yapı nedir? **Cevap:** Animator Controller.
+2.  **Soru:** `Particle System` nedir? **Cevap:** Parçacık efektleri oluşturmaya yarayan sistem.
+3.  **Soru:** Karakterin "bekleme" halinden "koşma" haline geçmesi için ne kullanılır? **Cevap:** Animasyon durumları (States) ve geçişler.
+4.  **Soru:** Oyun sahnelerine sinematik hava katmak için ne eklenir? **Cevap:** Hikaye pencereleri ve efektler.
+5.  **Soru:** Terrain aracıyla ne yapılabilir? **Cevap:** Arazi, dağ, ağaç ve ot gibi çevre düzenlemeleri.
+6.  **Soru:** Animasyonu kod ile kontrol etmek için hangi bileşene erişilir? **Cevap:** GetComponent<Animator>().
+7.  **Soru:** Animasyon geçişlerindeki "Has Exit Time" ne anlama gelir? **Cevap:** Animasyonun bitmesini beklemeden diğerine geçip geçmeyeceğini belirler.
+8.  **Soru:** Nesnelerin sahneden belirli bir sürede yok olması için kod nasıldır? **Cevap:** `Destroy(nesne, sure);`.
+9.  **Soru:** Bir modelin boyutlarını değiştirmek için Transform'un hangi değeriyle oynanır? **Cevap:** Scale.
+10. **Soru:** Oyunda "karakter seçimi" verisi genellikle nerede saklanır? **Cevap:** PlayerPrefs veya global değişkenlerde.
+
+---
+
+### **2. DÖNEM 2. SINAV HAZIRLIK NOTLARI**
+**Konu Özeti:**
+*   **Yapay Zeka (AI):** Düşman karakterlerin yol bulması için **NavMesh** sistemi ve davranış ağaçları kullanılır.
+*   **Optimizasyon:** Oyun performansını ölçmek için **Profiler** penceresi kullanılır.
+*   **Yayınlama:** Oyun tamamlandığında **Build Settings** menüsünden uygun platform (Windows, Android vb.) için paketlenir (Build).
+
+**10 Soru ve Cevap:**
+1.  **Soru:** Yapay zekanın sahnede hareket edebileceği alanları belirleyen sistem nedir? **Cevap:** NavMesh.
+2.  **Soru:** Oyunun hangi kısmının bilgisayarı yorduğunu (FPS düşüşü vb.) nasıl anlarız? **Cevap:** Profiler kullanarak.
+3.  **Soru:** Oyunu son kullanıcıya sunmak için hazırlama işlemine ne denir? **Cevap:** Paketleme (Build).
+4.  **Soru:** Oyunlarda seslerin mesafeye göre azalıp artmasını sağlayan bileşen nedir? **Cevap:** Audio Source ve Audio Listener.
+5.  **Soru:** Reklam eklemek için genellikle hangi servis kullanılır? **Cevap:** Google AdMob veya Unity Ads.
+6.  **Soru:** Yapay zekada "karar verme" mekanizmalarını yöneten yapı nedir? **Cevap:** Davranış Ağaçları (Behavior Trees).
+7.  **Soru:** `Time.deltaTime` neden kullanılır? **Cevap:** Hareketlerin bilgisayar hızından bağımsız, saniye bazlı olması için.
+8.  **Soru:** Çok oyunculu (multiplayer) sistemler için hangi kütüphaneler yaygındır? **Cevap:** Photon (PUN).
+9.  **Soru:** Oyun test aşamasında karşılaşılan hatalara ne denir? **Cevap:** Bug.
+10. **Soru:** Mobil cihazlar için oyun çıktı alırken Build Settings'te hangi platform seçilmelidir? **Cevap:** Android veya iOS.
+
+Kral, isteğin üzerine her sınav dönemi için müfredata uygun, en kritik kavramlardan oluşan **20'şer adet flash kartı** aşağıda doğrudan çalışabileceğin şekilde hazırladım.
+
+### **1. DÖNEM 1. SINAV: TEMELLER VE KODLAMA**
+1.  **Rigidbody:** Nesneye yerçekimi ve kuvvet gibi fiziksel özellikler ekleyen bileşendir.
+2.  **Collider:** Nesnelerin birbirine çarpmasını sağlayan fiziksel sınır hattıdır.
+3.  **Start():** Oyun başladığında kodların sadece bir kez çalıştırıldığı metottur.
+4.  **Update():** Kodların her karede (frame) sürekli tekrar çalıştığı metottur.
+5.  **Destroy():** Bir nesneyi veya bileşeni sahneden tamamen silmek için kullanılan koddur.
+6.  **[SerializeField]:** Kod içindeki değişkeni Unity’nin Inspector panelinde görünür ve düzenlenebilir yapar.
+7.  **int:** Tam sayı verilerini saklamak için kullanılan değişken türüdür.
+8.  **float:** Ondalıklı (virgüllü) sayı verilerini saklayan değişken türüdür.
+9.  **bool:** Sadece "true" (doğru) veya "false" (yanlış) değerini tutan değişkendir.
+10. **string:** Metin veya yazı türündeki verileri saklar.
+11. **Hierarchy:** Sahnedeki tüm nesnelerin listelendiği yönetim panelidir.
+12. **Inspector:** Seçili nesnenin özelliklerinin ve bileşenlerinin düzenlendiği paneldir.
+13. **Project Window:** Projeye ait tüm dosya ve varlıkların (Assets) bulunduğu klasör yapısıdır.
+14. **Scene:** Oyunun görsel olarak tasarlandığı, nesnelerin yerleştirildiği sahne alanıdır.
+15. **Transform:** Nesnenin konum (position), dönme (rotation) ve boyut (scale) bilgisini tutar.
+16. **OnCollisionEnter:** İki katı nesne birbirine çarptığı anda tetiklenen metottur.
+17. **OnTriggerEnter:** Bir nesne içinden geçilebilir bir alana girdiğinde çalışan metottur.
+18. **Assets:** Dışarıdan projeye dahil edilen model, ses ve resim gibi kaynaklardır.
+19. **If-Else:** Belirli bir şarta göre kodun farklı yollar izlemesini sağlayan karar yapısıdır.
+20. **Console:** Kodlardaki hataların veya `Debug.Log` mesajlarının takip edildiği penceredir.
+
+### **1. DÖNEM 2. SINAV: ARAYÜZ, MATERYAL VE IŞIK**
+1.  **Canvas:** Buton, yazı ve resim gibi UI (Arayüz) nesnelerinin üzerinde durduğu temel düzlemdir.
+2.  **Sprite:** 2D oyunlarda kullanılan görsel resim dosyalarına verilen addır.
+3.  **Tilemap:** Kare (grid) tabanlı zemin ve harita tasarımları yapmaya yarayan sistemdir.
+4.  **Material:** Nesnenin rengini, dokusunu ve ışığa tepkisini belirleyen kaplamadır.
+5.  **Albedo:** Materyalin ana rengini veya üzerine giydirilen ana resmi temsil eder.
+6.  **Directional Light:** Güneş gibi tüm sahneyi tek bir yönden ve eşit şekilde aydınlatır.
+7.  **Camera:** Sahneyi oyuncunun ekranına yansıtan, görüş açısını belirleyen objedir.
+8.  **Input Field:** Kullanıcının ekrana yazı veya sayı girişi yapmasını sağlayan UI bileşenidir.
+9.  **Button:** Tıklandığında belirli bir fonksiyonu/kodu çalıştıran etkileşimli nesnedir.
+10. **Texture:** Materyallere derinlik ve detay katmak için kullanılan resim dokusudur.
+11. **Smoothness:** Materyalin yüzeyindeki pürüzsüzlük ve yansıma oranını ayarlar.
+12. **Metallic:** Bir yüzeyin metalik görünüm oranını belirleyen değerdir.
+13. **Opaque:** Işığı geçirmeyen, saydam olmayan materyal modudur.
+14. **Skybox:** Oyunun arka planındaki gökyüzü görüntüsünü sağlayan kaplamadır.
+15. **Event System:** UI nesneleriyle (tıklama, sürükleme vb.) etkileşimi yöneten sistemdir.
+16. **Prefab:** Tekrar tekrar kullanılabilen, özellikleri önceden ayarlanmış nesne şablonlarıdır.
+17. **Point Light:** Bir ampul gibi belirli bir noktadan çevreye yayılan ışık türüdür.
+18. **Spot Light:** Bir fener gibi belirli bir açıyla koni şeklinde yayılan ışık türüdür.
+19. **RGB:** Kırmızı, Yeşil ve Mavi renklerin karışımıyla oluşan renk uzayıdır.
+20. **Scene Management:** Sahneler arası geçişi ve bölümlerin yüklenmesini yöneten kütüphanedir.
+
+### **2. DÖNEM 1. SINAV: ANİMASYON VE ÇEVRE TASARIMI**
+1.  **Animator:** Bir nesneye animasyon yeteneği kazandıran temel bileşendir.
+2.  **Animator Controller:** Animasyonlar arasındaki geçişleri ve mantığı yöneten akış şemasıdır.
+3.  **Animation State:** Animasyonun o anki durumudur (Bekleme, Koşma, Ölme gibi).
+4.  **Transition:** Bir animasyon durumundan diğerine geçişi sağlayan yoldur.
+5.  **Condition:** Animasyonlar arası geçişin gerçekleşmesi için gereken şarttır.
+6.  **Particle System:** Patlama, ateş, kar ve duman gibi görsel efektler oluşturur.
+7.  **Terrain:** Dağ, vadi ve ova gibi büyük yer şekillerini oluşturmaya yarayan araçtır.
+8.  **Paint Terrain:** Fırça kullanarak arazi üzerinde yükselti veya çukur oluşturma işlemidir.
+9.  **Raise/Lower:** Araziyi yükseltip alçaltarak dağ veya dere yatağı yapma aracıdır.
+10. **Paint Texture:** Arazi yüzeyini çimen, kaya veya kum gibi dokularla boyamaktır.
+11. **Cinematics:** Oyun içinde hikayeyi anlatan, önceden kurgulanmış ara sahnelerdir.
+12. **DOTween:** Kod üzerinden nesneleri akıcı şekilde hareket ettirmeyi sağlayan kütüphanedir.
+13. **Ragdoll:** Karakterin öldüğünde fiziksel olarak gerçekçi bir şekilde yere yığılmasıdır.
+14. **SetLoops:** Bir animasyonun kaç kez tekrarlanacağını belirleyen komuttur.
+15. **SetEase:** Hareketin ivmesini (hızlanma/yavaşlama tarzını) belirleyen ayardır.
+16. **Vector3:** 3D uzaydaki X, Y, Z koordinatlarını temsil eden veri yapısıdır.
+17. **GetComponent:** Bir nesnenin üzerindeki başka bir bileşene (Script, Animator vb.) erişimi sağlar.
+18. **Has Exit Time:** Bir animasyonun bitmeden diğerine geçip geçemeyeceğini belirleyen seçenektir.
+19. **Opacity:** Parçacık efektlerinin veya fırçanın şeffaflık/yoğunluk ayarıdır.
+20. **Model:** Oyun motoru içinde veya dışarıda oluşturulan 3D nesne tasarımlarıdır.
+
+### **2. DÖNEM 2. SINAV: YAPAY ZEKA VE YAYINLAMA**
+1.  **NavMesh:** Yapay zekanın (AI) sahnede yürüyeceği alanları belirleyen navigasyon ağıdır.
+2.  **Behavior Tree:** Yapay zekanın karmaşık kararlar vermesini sağlayan davranış ağacı yapısıdır.
+3.  **Audio Source:** Ses dosyasının oyun içinde çalınmasını sağlayan kaynaktır.
+4.  **Audio Listener:** Sesi duyan kulak görevi görür; genelde ana kamerada bulunur.
+5.  **Build Settings:** Oyunun hangi platforma (PC, Android vb.) çıktı alınacağının ayarlandığı yerdir.
+6.  **Profiler:** Oyunun performansını ve bilgisayarı ne kadar yorduğunu izleyen paneldir.
+7.  **Optimization:** Oyunun daha hızlı çalışması ve kasmaması için yapılan iyileştirmelerdir.
+8.  **Google AdMob:** Mobil oyunlara reklam eklemek için kullanılan Google servisidir.
+9.  **Banner Ad:** Ekranın alt veya üst kısmında sürekli duran küçük reklam bandıdır.
+10. **Interstitial Ad:** Bölüm aralarında çıkan, ekranın tamamını kaplayan geçiş reklamıdır.
+11. **Rewarded Ad:** Oyuncuya reklam izlemesi karşılığında ödül veren reklam türüdür.
+12. **APK:** Android cihazlara yüklenebilen oyun paket dosya uzantısıdır.
+13. **Bug:** Yazılımda veya tasarımda oluşan hatalara ve kusurlara verilen isimdir.
+14. **Try-Catch:** Kodda hata oluşabilecek yerleri denetleyip çökmesini önleyen yapıdır.
+15. **JDK:** Android için oyun paketleme (Build) sırasında gereken geliştirme kitidir.
+16. **Photon (PUN):** Çok oyunculu (multiplayer) oyunlar geliştirmek için kullanılan sistemdir.
+17. **OnJoinedRoom:** Oyuncu bir odaya başarıyla girdiğinde çalışan Photon metodudur.
+18. **Debug.Log:** Belirli bir bilginin veya hatanın konsol penceresine yazdırılmasıdır.
+19. **UI Menu:** Oyun başındaki "Başlat", "Ayarlar" ve "Çıkış" seçeneklerini içeren menüdür.
+20. **Performance Testing:** Oyunun farklı cihazlarda düzgün çalışıp çalışmadığının test edilmesidir.
+
+Kral, 12. sınıf Oyun Programlama dersi yıllık planına ve ders materyallerine göre hazırladığım, sınav odaklı 4 ayrı çalışma özeti aşağıdadır:
+
+### **1. DÖNEM 1. SINAV ÇALIŞMA ÖZETİ**
+*   **Kurulum ve Arayüz:** Oyun motoru ve kod editörü kurulumu yapılır; yeni projeler 2D veya 3D şablonlarıyla başlatılır. Arayüzde **Hierarchy** (sahne listesi), **Inspector** (özellikler), **Project** (dosyalar) ve **Scene** (tasarım alanı) pencereleri temel çalışma alanlarıdır.
+*   **Nesneler ve Varlıklar:** Sahneye 2D/3D objeler eklenir ve bu objeler **Transform** (konum, döndürme, ölçek) bileşeni ile biçimlendirilir. Dışarıdan ses, model veya resim aktarmak için **Assets** klasörü kullanılır.
+*   **Fizik ve Çarpışma:** Nesnelere yerçekimi ve kuvvet gibi fiziksel özellikler eklemek için **Rigidbody** bileşeni eklenmelidir. Nesnelerin birbirine çarpmasını sağlamak için **Collider** (çarpışma gövdesi) kullanılır; fiziksel engel teşkil etmeyen ama etkileşimi algılayan alanlara **Trigger** (tetikleyici) denir.
+*   **Kodlamaya Giriş:** C# dilinde değişkenler (int, float, string, bool), operatörler ve `if-else` karar yapıları oyun mantığını kurar. **Start()** metodu oyun başında bir kez, **Update()** metodu ise her karede çalışır. Nesneleri kodla yok etmek için **Destroy()** komutu kullanılır.
+
+### **1. DÖNEM 2. SINAV ÇALIŞMA ÖZETİ**
+*   **Kullanıcı Arayüzü (UI):** Butonlar, metinler ve panellerin üzerinde durduğu temel yapı **Canvas**’tır. Kullanıcıdan isim veya şifre almak için **Input Field** nesneleri kullanılır ve bu veriler kod ile işlenir.
+*   **Görsel Düzenleme ve Harita:** 2D oyunlardaki görsellere **Sprite** denir. Kare tabanlı zemin ve dünya tasarımları için **Tilemap** sistemi kullanılır.
+*   **Materyal ve Işık:** Nesnelerin rengini ve dokusunu (texture) belirleyen yapılara **Materyal** denir. Sahneyi aydınlatmak için **Directional Light** (genel ışık), **Point Light** (noktasal ışık) gibi türler kullanılır; kamera ayarları ile oyuncunun görüş açısı belirlenir.
+*   **Veri Yönetimi:** Skor veya kullanıcı ayarları gibi basit verileri kaydetmek için **PlayerPrefs** kullanılırken, soru listesi gibi daha karmaşık veriler **JSON** formatında saklanıp okunabilir.
+
+### **2. DÖNEM 1. SINAV ÇALIŞMA ÖZETİ**
+*   **Modelleme ve Yıkım:** Oyun motoru içindeki modelleme modu ile temel 3D nesneler oluşturulabilir. Etkileşim sırasında nesnelerin parçalanması veya sahneden silinmesi yıkım işlemleri altında incelenir.
+*   **Animasyon Sistemi:** Karakterlere hareket kazandırmak için **Animator Controller** ve **Animation** pencereleri kullanılır. Durumlar (**States**) arasındaki geçişler (**Transitions**) belirli koşullara (**Conditions**) bağlanarak yönetilir. Animasyonlar `GetComponent<Animator>()` komutu ile kod üzerinden kontrol edilebilir.
+*   **Efektler ve Görsellik:** Patlama, toz, ateş veya kar gibi görsel efektler oluşturmak için **Particle System** kullanılır. Sahne geçişlerinde sinematik hava katmak için hikaye ve tanıtım pencereleri eklenir.
+*   **Çevre Tasarımı:** Bina, ağaç ve hayvan gibi prefabrik nesneler sahneye yerleştirilerek çevre düzenlemesi yapılır. Ayrıca **Terrain** araçlarıyla arazi yükseltileri ve bitki örtüsü oluşturulur.
+
+### **2. DÖNEM 2. SINAV ÇALIŞMA ÖZETİ**
+*   **Ses Yönetimi:** Oyuna derinlik katmak için etkileşim sesleri ve arka plan müzikleri eklenir. Seslerin duyulması için sahnede bir **Audio Listener** (dinleyici) ve ses kaynağı olarak **Audio Source** bulunmalıdır.
+*   **Yapay Zeka (AI):** Düşman karakterlerin kararlarını yönetmek için **Davranış Ağaçları** (Behavior Trees) ve durum değişkenleri kullanılır. AI bileşenleri, karakterlerin engellerden kaçmasını ve hedefi takip etmesini sağlar.
+*   **Test ve Optimizasyon:** Oyun tamamlandığında karşılaşılan yazılımsal hatalar (bugs) hata yakalama süreçleriyle düzeltilir. Oyun performansını artırmak (FPS yükseltmek) için **Profiler** penceresiyle analiz yapılarak gereksiz yükler temizlenir ve optimizasyon yapılır.
+*   **Yayınlama (Build):** Oyun son kullanıcıya sunulmak üzere **Build Settings** menüsünden uygun platform için (Windows, Android vb.) paketlenir. Ayrıca çok oyunculu sistemler için **Photon** gibi kütüphanelerle bağlantı ayarları yapılır.
+

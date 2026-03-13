@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Programlama Portalı</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#39ff14">
+</head>
+<body>
+    <canvas id="confetti-canvas"></canvas>
+    <div id="achievement-toast">Yeni Başarım! 🏆</div>
+
+    <div class="container">
+        <div class="top-bar">
+            <button class="icon-btn" onclick="app.showHome()">🏠</button>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Oyun dünyasında ara..." oninput="app.search(this.value)">
+            </div>
+            <button class="icon-btn" onclick="app.toggleTheme()">🎮</button>
+        </div>
+
+        <!-- Home View -->
+        <div id="view-home" class="view active">
+            <header>
+                <h1>Oyun Programlama</h1>
+                <p>LEVEL UP YOUR SKILLS</p>
+            </header>
+            
+            <div id="exam-grid" class="grid">
+                <!-- Cards will be injected -->
+            </div>
+        </div>
+
+        <!-- Selection View -->
+        <div id="view-selection" class="view">
+            <header>
+                <h2 id="selected-title">Bölüm Seçimi</h2>
+                <div class="badge-container" id="badges"></div>
+            </header>
+            
+            <div class="grid">
+                <div class="card glow-card" onclick="app.startSummary()" style="grid-column: 1 / -1; border-color: var(--primary);">
+                    <span class="card-icon">📖</span>
+                    <h3 class="card-title">Hızlı Konu Özeti</h3>
+                    <p class="card-desc">Sınav öncesi bilmen gereken kritik noktalar.</p>
+                </div>
+                <div class="card glow-card" onclick="app.startStudy()">
+                    <span class="card-icon">📚</span>
+                    <h3 class="card-title">Çalışma</h3>
+                    <p class="card-desc">Tüm soruları ve cevapları incele.</p>
+                </div>
+                <div class="card glow-card" onclick="app.startFlashcards()">
+                    <span class="card-icon">🎴</span>
+                    <h3 class="card-title">Flash Kartlar</h3>
+                    <p class="card-desc">Kısa bilgilerle hafızanı tazele.</p>
+                </div>
+                <div class="card glow-card" onclick="app.startGame('tf')">
+                    <span class="card-icon">⚡</span>
+                    <h3 class="card-title">Doğru/Yanlış</h3>
+                    <p class="card-desc">Hızlı karar ver, puanları topla.</p>
+                </div>
+                <div class="card glow-card" onclick="app.startGame('word')">
+                    <span class="card-icon">🧩</span>
+                    <h3 class="card-title">Kelime Tahmin</h3>
+                    <p class="card-desc">Gizli terimleri bulmaya çalış.</p>
+                </div>
+                <div class="card glow-card" onclick="app.startGame('test')">
+                    <span class="card-icon">📝</span>
+                    <h3 class="card-title">Klasik Test</h3>
+                    <p class="card-desc">10 soruluk sınav simülasyonu.</p>
+                </div>
+                <div class="card glow-card" onclick="app.startGame('time')">
+                    <span class="card-icon">⏳</span>
+                    <h3 class="card-title">Zamanla Yarış</h3>
+                    <p class="card-desc">60 saniyede kaç soru bilirsin?</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center;">
+                <button class="btn btn-secondary" onclick="app.printNotes()">🖨️ DERS NOTLARINI YAZDIR</button>
+            </div>
+        </div>
+
+        <!-- Content View -->
+        <div id="view-content" class="view">
+            <div class="nav-header">
+                <button class="btn" onclick="app.showSelection(app.activeExam)">⬅ Geri</button>
+                <div id="game-status"></div>
+            </div>
+            <div id="content-container"></div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal-result" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="app.closeModal()">&times;</span>
+            <div id="result-body"></div>
+        </div>
+    </div>
+
+    <div id="print-area"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 <a href="https://fatihpatir.github.io/web" target="_blank" class="footer-name">Fatih PATIR</a></p>
+            <p class="footer-location">Korkuteli / Antalya</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
+</body>
+</html>
