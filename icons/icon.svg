@@ -1,0 +1,30 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="128" fill="#0f0a1a"/>
+  <!-- Glow Effect -->
+  <circle cx="256" cy="256" r="200" fill="url(#glowGradient)" opacity="0.4"/>
+  
+  <!-- Controller Base -->
+  <path d="M160 200H352C380 200 400 220 400 248V320C400 348 380 368 352 368H320L280 320H232L192 368H160C132 368 112 348 112 320V248C112 220 132 200 160 200Z" stroke="#39ff14" stroke-width="12" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Buttons -->
+  <circle cx="160" cy="260" r="15" fill="#39ff14"/>
+  <circle cx="160" cy="290" r="15" fill="#39ff14"/>
+  <circle cx="130" cy="275" r="15" fill="#39ff14"/>
+  <circle cx="190" cy="275" r="15" fill="#39ff14"/>
+  
+  <circle cx="340" cy="250" r="20" fill="#ff007f"/>
+  <circle cx="370" cy="280" r="20" fill="#ff007f"/>
+  
+  <!-- Line Details -->
+  <path d="M256 220V260" stroke="#ff007f" stroke-width="8" stroke-linecap="round"/>
+  
+  <!-- Text Label -->
+  <text x="256" y="440" text-anchor="middle" font-family="Orbitron, sans-serif" font-size="40" font-weight="bold" fill="#39ff14">OYUN PROG</text>
+
+  <defs>
+    <radialGradient id="glowGradient" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 256) rotate(90) scale(200)">
+      <stop stop-color="#39ff14"/>
+      <stop offset="1" stop-color="#39ff14" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
