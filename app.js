@@ -68,6 +68,26 @@ const app = {
     this.showView('view-content');
   },
 
+  startOpenEnded() {
+    const c = document.getElementById('content-container');
+    const qs = this.activeExam.openEndedQuestions || [];
+    
+    if(qs.length === 0) {
+      c.innerHTML = `<div class="game-container"><h3 style="text-align:center;">Bu ünite için açık uçlu soru bulunamadı.</h3></div>`;
+      return;
+    }
+
+    c.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2.5rem; flex-wrap:wrap;">
+          <h2 style="color:var(--accent); margin:0;">${this.activeExam.title} / Açık Uçlu Sınav</h2>
+          <button class="btn btn-secondary" style="padding:0.7rem 1.2rem; font-size:0.7rem;" onclick="app.printOpenEnded()">🖨️ PDF İNDİR</button>
+      </div>
+      ${qs.map((q, i) => `<div class="q-card" style="margin-bottom:2rem;"><div class="q-num">SORU ${i+1}</div><p class="q-text" style="font-weight:bold; font-size:1.1rem; margin-bottom:1rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">${q.q}</p><p class="a-text" style="color:var(--accent); line-height:1.6; font-size:1.05rem;"><strong style="color:var(--text);">Cevap:</strong> ${q.a}</p></div>`).join('')}
+    `;
+    this.saveProgress('openEnded');
+    this.showView('view-content');
+  },
+
   startStudy() {
     const c = document.getElementById('content-container');
     c.innerHTML = `<h2>${this.activeExam.title}</h2>${this.activeExam.questions.map((q, i) => `<div class="q-card"><div class="q-num">MISSION ${i+1}</div><p class="q-text">${q.q}</p><p class="a-text">${q.a}</p></div>`).join('')}`;
@@ -169,7 +189,24 @@ const app = {
 
   printNotes() {
     const area = document.getElementById('print-area');
-    area.innerHTML = `<h1>${this.activeExam.title} Ders Notları</h1>${this.activeExam.questions.map(q => `<div style="margin-bottom:15px"><strong>S: ${q.q}</strong><br>C: ${q.a}</div>`).join('')}`;
+    let html = `<div style="text-align:center"><h1 style="font-family:sans-serif">${this.activeExam.title} - Çalışma Kağıdı</h1><p>Hazırlayan: Fatih PATIR</p></div><hr>`;
+    html += this.activeExam.questions.map(q => `<div style="margin-bottom:15px; border-bottom:1px solid #ddd; padding:10px;"><strong>S: ${q.q}</strong><br>C: ${q.a}</div>`).join('');
+    area.innerHTML = html;
+    window.print();
+  },
+
+  printOpenEnded() {
+    const a = document.getElementById('print-area');
+    let html = `<div style="text-align:center"><h1 style="font-family:sans-serif">${this.activeExam.title} - Açık Uçlu Sınav Soruları</h1><p>Hazırlayan: Fatih PATIR</p></div><hr>`;
+    if(this.activeExam.openEndedQuestions) {
+      html += this.activeExam.openEndedQuestions.map((q, i) => `
+        <div style="margin-bottom:25px; padding:15px; border-bottom:1px solid #eee; font-family:sans-serif;">
+          <strong style="font-size:13pt;">Soru ${i+1}: ${q.q}</strong><br><br>
+          <div style="font-size:12pt; color:#222;"><strong>Cevap:</strong> ${q.a}</div>
+        </div>
+      `).join('');
+    }
+    a.innerHTML = html;
     window.print();
   },
 
