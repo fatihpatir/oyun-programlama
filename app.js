@@ -7,14 +7,66 @@ const app = {
   progress: JSON.parse(localStorage.getItem('oyun_progress')) || {},
   soundEnabled: JSON.parse(localStorage.getItem('oyun_sound')) !== false,
   achievements: JSON.parse(localStorage.getItem('oyun_achievements')) || [],
+  audioCtx: null,
+  theme: localStorage.getItem('oyun_theme') || 'dark',
 
   init() {
+    this.initAudio();
+    this.applyTheme();
     this.renderHome();
     this.checkAchievements();
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       this.deferredPrompt = e;
     });
+  },
+
+  initAudio() {
+    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    this.updateSoundBtn();
+  },
+
+  playTone(freq, type, duration, vol = 0.1) {
+    if (!this.soundEnabled || !this.audioCtx) return;
+    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+    const osc = this.audioCtx.createOscillator();
+    const gain = this.audioCtx.createGain();
+    osc.type = type; osc.frequency.setValueAtTime(freq, this.audioCtx.currentTime);
+    gain.gain.setValueAtTime(vol, this.audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, this.audioCtx.currentTime + duration);
+    osc.connect(gain); gain.connect(this.audioCtx.destination);
+    osc.start(); osc.stop(this.audioCtx.currentTime + duration);
+  },
+
+  playSound(type) {
+    switch(type) {
+      case 'click': this.playTone(800, 'sine', 0.1, 0.05); break;
+      case 'success': this.playTone(600, 'sine', 0.1); setTimeout(() => this.playTone(900, 'sine', 0.2), 100); break;
+      case 'fail': this.playTone(300, 'sawtooth', 0.2, 0.05); setTimeout(() => this.playTone(200, 'sawtooth', 0.3, 0.05), 150); break;
+      case 'win': [440, 554, 659, 880].forEach((f, i) => setTimeout(() => this.playTone(f, 'sine', 0.4, 0.1), i * 150)); break;
+    }
+  },
+
+  toggleSound() {
+    this.soundEnabled = !this.soundEnabled;
+    localStorage.setItem('oyun_sound', this.soundEnabled);
+    this.updateSoundBtn(); if (this.soundEnabled) this.playSound('click');
+  },
+
+  updateSoundBtn() {
+    const btn = document.getElementById('btn-sound');
+    if (btn) btn.innerText = this.soundEnabled ? '🔊' : '🔇';
+  },
+
+  toggleTheme() {
+    this.theme = this.theme === 'dark' ? 'blueprint' : 'dark';
+    localStorage.setItem('oyun_theme', this.theme);
+    this.applyTheme();
+    this.playSound('click');
+  },
+
+  applyTheme() {
+    document.body.className = this.theme === 'blueprint' ? 'theme-blueprint' : '';
   },
 
   renderHome() {
@@ -47,6 +99,7 @@ const app = {
   showHome() { this.activeExam = null; this.showView('view-home'); this.renderHome(); },
 
   showView(viewId) {
+    this.playSound('click');
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.getElementById(viewId).classList.add('active');
     window.scrollTo(0,0);
@@ -119,10 +172,7 @@ const app = {
     c.innerHTML = `<div class="game-container"><h3>Doğru mu Yanlış mı?</h3><div class="q-card"><p class="q-text">${q.q}</p><p class="a-text" style="color:var(--accent)">Cevap: ${displayA}</p></div><div class="tf-btns"><button class="btn btn-true" onclick="app.checkTF(true, ${isCorrect === (displayA === q.a)})">DOĞRU</button><button class="btn btn-false" onclick="app.checkTF(false, ${isCorrect === (displayA === q.a)})">YANLIŞ</button></div></div>`;
   },
 
-  checkTF(playerChoice, actuallyCorrect) {
-    if(playerChoice === actuallyCorrect) { this.score++; this.playTF(); }
-    else this.endGame('Game Over!', `Skorun: ${this.score}`);
-  },
+  checkTF(p, c) { if(p === c) { this.playSound('success'); this.score++; this.playTF(); } else { this.playSound('fail'); this.endGame('Game Over!', `Puanın: ${this.score}`); } },
 
   playWord() {
     const q = this.activeExam.questions[Math.floor(Math.random()*this.activeExam.questions.length)];
@@ -132,14 +182,16 @@ const app = {
     c.innerHTML = `<div class="game-container"><h3>Kelimeyi Tahmin Et</h3><p style="margin-bottom:1rem;">${q.q}</p><div class="word-display" id="word-box">${hidden}</div><div class="keyboard">${"ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ".split('').map(l => `<button class="key" onclick="app.guess('${l}', '${word}', this)">${l}</button>`).join('')}</div></div>`;
   },
 
-  guess(l, word, btn) {
-    btn.classList.add('used');
+  guess(l, w, b) {
+    this.playSound('click');
+    b.classList.add('used');
     const box = document.getElementById('word-box');
     let current = box.innerText.split('');
     let found = false;
-    word.split('').forEach((char, i) => { if(char === l) { current[i] = l; found = true; } });
+    w.split('').forEach((char, i) => { if(char === l) { current[i] = l; found = true; } });
     box.innerText = current.join('');
-    if(!current.includes('_')) { this.saveProgress('game'); this.endGame('Tebrikler!', `Kelime: ${word}`); }
+    if(!current.includes('_')) { this.playSound('win'); this.saveProgress('game'); this.endGame('Victory!', `Kelime: ${w}`); this.triggerConfetti(); }
+    else if(!w.includes(l)) { this.playSound('fail'); } else { this.playSound('success'); }
   },
 
   playTime() {
@@ -159,16 +211,14 @@ const app = {
     c.innerHTML = `<div class="game-container"><div class="q-card"><p class="q-text">${q.q}</p></div><div class="test-options">${options.map(o => `<button class="option-btn" onclick="app.checkTimeQ('${o}', '${q.a}')">${o}</button>`).join('')}</div></div>`;
   },
 
-  checkTimeQ(choice, correct) {
-    if(choice === correct) this.score++;
-    this.nextTimeQ();
-  },
+  checkTimeQ(p, c) { if(p === c) { this.playSound('success'); this.score++; } else { this.playSound('fail'); } this.nextTimeQ(); },
 
   endGame(title, msg) {
     clearInterval(this.timer);
     document.getElementById('game-status').innerText = '';
     const body = document.getElementById('result-body');
     body.innerHTML = `<h2 style="color:var(--primary); margin-bottom:1rem;">${title}</h2><p style="font-size:1.5rem; margin-bottom:2rem;">${msg}</p><button class="btn" onclick="app.closeModal()">TAMAM</button>`;
+    if(title.includes('Victory') || title.includes('Over') || title.includes('Süre') || title.includes('Bitti')) this.playSound('win');
     document.getElementById('modal-result').classList.add('active');
   },
 
@@ -211,8 +261,14 @@ const app = {
   },
 
   toggleTheme() {
-    document.body.classList.toggle('theme-blueprint');
-    localStorage.setItem('oyun_theme_blue', document.body.classList.contains('theme-blueprint'));
+    this.theme = this.theme === 'dark' ? 'blueprint' : 'dark';
+    localStorage.setItem('oyun_theme', this.theme);
+    this.applyTheme();
+    this.playSound('click');
+  },
+
+  applyTheme() {
+    document.body.className = this.theme === 'blueprint' ? 'theme-blueprint' : '';
   }
 };
 
